@@ -90,6 +90,15 @@ app.get("/api/students", (req, res) => {
 });
 
 //Get all students from specific cohort
+app.get("/api/students/cohort/:cohortId", (req, res) => {
+  Student.find({cohort: req.params.cohortId})
+  .then((foundStudents) => {
+    res.status(200).json(foundStudents);
+  })
+  .catch((error) => {
+    res.status(500).json({ message: "Error while getting students from specific cohort"});
+  });
+});
 
 //Get specific student (by id)
 app.get("/api/students/:studentId", (req, res) => {
