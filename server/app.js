@@ -81,6 +81,7 @@ app.post("/api/students", (req, res) => {
 // Get all students
 app.get("/api/students", (req, res) => {
   Student.find()
+  .populate("cohort")
   .then((allStudents) => {
     res.status(200).json(allStudents);
   })
@@ -92,6 +93,7 @@ app.get("/api/students", (req, res) => {
 //Get all students from specific cohort
 app.get("/api/students/cohort/:cohortId", (req, res) => {
   Student.find({cohort: req.params.cohortId})
+  .populate("cohort")
   .then((foundStudents) => {
     res.status(200).json(foundStudents);
   })
@@ -103,6 +105,7 @@ app.get("/api/students/cohort/:cohortId", (req, res) => {
 //Get specific student (by id)
 app.get("/api/students/:studentId", (req, res) => {
   Student.findById(req.params.id)
+  .populate("cohort")
   .then((student) => {
     res.status(200).json(student);
   })
