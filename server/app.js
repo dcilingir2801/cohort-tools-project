@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 const Cohort = require("./models/Cohorts.model.js");
 const Student = require("./models/Students.model.js");
 
+const { isAuthenticated } = require("./middleware/jwt.middleware");
+
 console.log(process.env.MONGODB_ATLAS_URL);
 mongoose
   .connect(process.env.MONGODB_ATLAS_URL)
